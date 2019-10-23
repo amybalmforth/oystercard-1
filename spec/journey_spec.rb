@@ -52,5 +52,27 @@ describe Journey do
 
   end
 
+  context 'calculating fare' do
+
+    let(:station){ double :station }
+
+    before do
+      card.top_up(50)
+    end
+
+      it 'returns the minimum fare' do
+        journey.touch_in(station, card)
+        journey.touch_out(station, card)
+        expect(journey.fare(card)).to eq(Journey::MINIMUM_FARE)
+      end
+
+      it 'returns the penalty fare if no entry station' do
+        journey.touch_out(station, card)
+        expect(journey.fare(card)).to eq(Journey::PENALTY_FARE)
+      end
+
+
+  end
+
 
 end

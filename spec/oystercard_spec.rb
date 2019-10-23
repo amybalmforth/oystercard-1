@@ -9,7 +9,7 @@ describe Oystercard do
     it 'initialise oystercard with balance of 0' do
       expect(card.balance).to eq 0
     end
-    
+
   end
 
   context 'with balance' do
@@ -21,7 +21,7 @@ describe Oystercard do
     let(:station){ double :station }
 
     it 'touch out card reduces balance by minimum fare' do
-      expect { journey.touch_out(station, card) }.to change{ card.balance }.by -1
+      expect { journey.touch_out(station, card) }.to change{ card.balance }.by -Journey::MINIMUM_FARE
     end
 
   end
